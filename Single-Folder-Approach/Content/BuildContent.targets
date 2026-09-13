@@ -1,0 +1,36 @@
+<Project>
+  <Target Name="BuildContent" AfterTargets="BeforeBuild" Condition="'$(DesignTimeBuild)' != 'true'">
+    <PropertyGroup>
+      <ContentOutput>$([MSBuild]::NormalizePath('$(ProjectDir)', '$(OutputPath)').TrimEnd('\/'))</ContentOutput>
+      <ContentTemp>$([MSBuild]::NormalizePath('$(ProjectDir)', '$(IntermediateOutputPath)').TrimEnd('\/'))</ContentTemp>
+      <ContentArgs>build -p $(MonoGamePlatform) -s Content/Assets -o "$(ContentOutput)" -i "$(ContentTemp)"</ContentArgs>
+      <ContentCommand>$(MSBuildThisFileDirectory)bin\Debug\Content</ContentCommand>
+    </PropertyGroup>
+    <MSBuild Projects="$(MSBuildThisFileDirectory)Content.csproj" Targets="Build" Properties="Configuration=Debug" RemoveProperties="TargetFramework;RuntimeIdentifier;RuntimeIdentifiers;SelfContained" />
+    <Exec Command="&quot;$(ContentCommand)&quot; $(ContentArgs)" WorkingDirectory="$(MSBuildThisFileDirectory)..\" CustomErrorRegularExpression="\[E\] .+" CustomWarningRegularExpression="\[W\] .+" />
+  </Target>
+  <Target Name="AddGeneratedContentAssets" AfterTargets="BuildContent" Condition="'$(DesignTimeBuild)' != 'true'">
+    <ItemGroup>
+      <GeneratedAsset Include="$(ContentOutput)\Content\**\*" />
+
+      <!-- Post Process Android Assets -->
+      <AndroidAsset Include="@(GeneratedAsset)"
+        Condition="'$(MonoGamePlatform)' == 'Android'">
+        <Link>Content\%(GeneratedAsset.RecursiveDir)%(GeneratedAsset.Filename)%(GeneratedAsset.Extension)</Link>
+      </AndroidAsset>
+
+      <!-- Post Process iOS Bundle Resources -->
+      <BundleResource Include="@(GeneratedAsset)"
+        Condition="'$(MonoGamePlatform)' == 'iOS'">
+        <Link>Content\%(GeneratedAsset.RecursiveDir)%(GeneratedAsset.Filename)%(GeneratedAsset.Extension)</Link>
+      </BundleResource>
+
+      <!-- Copy content for `dotnet publish` builds -->
+      <Content Include="@(GeneratedAsset)"
+        Condition="'$(MonoGamePlatform)' != 'Android' And '$(MonoGamePlatform)' != 'iOS'">
+        <Link>Content\%(GeneratedAsset.RecursiveDir)%(GeneratedAsset.Filename)%(GeneratedAsset.Extension)</Link>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+  </Target>
+</Project>

@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- App name, identity and version come from ..\Source\Resources\Identity.props. -->
+  <Import Project="..\Source\Resources\Identity.props" />
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <RollForward>Major</RollForward>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <TieredCompilation>false</TieredCompilation>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>..\Source\Resources\Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\Source\Resources\Icon.ico">
+      <LogicalName>Icon.ico</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Source\Resources\Icon.bmp">
+      <LogicalName>Icon.bmp</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Source\**\*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Include="..\Content\Assets\**\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.DesktopGL" />
+  </ItemGroup>
+  <Import Project="..\Content\BuildContent.targets" />
+  <!-- Generates Info.plist for a hand-packaged macOS .app bundle, when building for macOS. -->
+  <Import Project="..\Source\Resources\macOS\MacBundle.targets" Condition="$(RuntimeIdentifier.StartsWith('osx'))" />
+</Project>

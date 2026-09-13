@@ -1,0 +1,72 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+//#if (IncludeDesktopGL)
+        {
+            "name": "EmptyGame (DesktopGL)",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/DesktopGL/EmptyGame.DesktopGL.csproj",
+            "preLaunchTask": "Build: DesktopGL"
+        }
+//#endif
+//#if (AnyPlatformBeforeDesktopVK)
+        ,
+//#endif
+//#if (IncludeDesktopVK)
+        {
+            "name": "EmptyGame (DesktopVK)",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/DesktopVK/EmptyGame.DesktopVK.csproj",
+            "preLaunchTask": "Build: DesktopVK"
+        }
+//#endif
+//#if (AnyPlatformBeforeWindowsDX)
+        ,
+//#endif
+//#if (IncludeWindowsDX)
+        {
+            "name": "EmptyGame (WindowsDX)",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/WindowsDX/EmptyGame.WindowsDX.csproj",
+            "preLaunchTask": "Build: WindowsDX"
+        }
+//#endif
+//#if (AnyPlatformBeforeWindowsDX12)
+        ,
+//#endif
+//#if (IncludeWindowsDX12)
+        {
+            "name": "EmptyGame (WindowsDX12)",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/WindowsDX12/EmptyGame.WindowsDX12.csproj",
+            "preLaunchTask": "Build: WindowsDX12"
+        }
+//#endif
+//#if (AnyPlatformBeforeAndroid)
+        ,
+//#endif
+//#if (IncludeAndroid)
+        {
+            "name": "EmptyGame (Android)",
+            "type": "maui",
+            "request": "launch",
+            "preLaunchTask": "Build: Android"
+        }
+//#endif
+//#if (AnyPlatformBeforeiOS)
+        ,
+//#endif
+//#if (IncludeiOS)
+        {
+            "name": "EmptyGame (iOS)",
+            "type": "maui",
+            "request": "launch",
+            "preLaunchTask": "Build: iOS"
+        }
+//#endif
+    ]
+}

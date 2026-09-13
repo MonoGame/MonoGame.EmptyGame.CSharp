@@ -1,0 +1,33 @@
+<Project>
+
+  <!--
+    Shared build settings for all platforms, the EmptyGame.*.csproj files next to this file.
+    Content\Content.csproj is a build tool, so everything below is switched off for it.
+  -->
+
+  <PropertyGroup>
+    <ParentBuildProps>$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))</ParentBuildProps>
+  </PropertyGroup>
+  <Import Project="$(ParentBuildProps)" Condition="'$(ParentBuildProps)' != ''" />
+
+  <PropertyGroup>
+    <MonoGameIsHead Condition="'$([MSBuild]::EnsureTrailingSlash($(MSBuildProjectDirectory)))' == '$(MSBuildThisFileDirectory)'">true</MonoGameIsHead>
+  </PropertyGroup>
+
+  <!-- Your game's name, identity and version. Edit that file, not this one. -->
+  <Import Project="$(MSBuildThisFileDirectory)Resources\Identity.props" Condition="'$(MonoGameIsHead)' == 'true'" />
+
+  <PropertyGroup Condition="'$(MonoGameIsHead)' == 'true'">
+    <!-- The platform part of the project name: EmptyGame.DesktopGL -> DesktopGL. -->
+    <MonoGameHeadName>$(MSBuildProjectName.Substring($([MSBuild]::Add($(MSBuildProjectName.LastIndexOf('.')), 1))))</MonoGameHeadName>
+
+    <!-- Every project shares this folder, so each one gets its own bin\ and obj\ subfolder named after the platform. -->
+    <BaseIntermediateOutputPath>obj\$(MonoGameHeadName)\</BaseIntermediateOutputPath>
+    <BaseOutputPath>bin\$(MonoGameHeadName)\</BaseOutputPath>
+
+    <!-- The project sits at the root of the solution, so the SDK's default "everything under the project folder" globs
+         would sweep Content\, Resources\ and every other project's files into each build. Each project lists what it needs. -->
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+
+</Project>

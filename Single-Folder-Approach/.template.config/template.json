@@ -1,0 +1,241 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "MonoGame Foundation",
+  "classifications": [ "MonoGame", "Games", "Empty", "Desktop", "Mobile", "Windows", "Linux", "macOS", "Android", "iOS" ],
+  "identity": "MonoGame.EmptyGame.CSharp",
+  "name": "MonoGame Empty Game",
+  "description": "A clean, empty MonoGame solution for all supported desktop and mobile platforms, using the new Content Builder. A single shared Game1 class, an empty content project and one project per platform - a blank canvas for any game.",
+  "shortName": "mg-emptygame",
+  "defaultName": "MyGame",
+  "tags": { "language": "C#", "type": "project" },
+  "preferNameDirectory": true,
+
+  "guids": [
+    "E070E0F3-5BFC-4AD1-99A0-6EC696784ED3",
+    "87B031AE-5EF8-494B-8110-B78E7BF9845E",
+    "AD61BC2D-97B7-4397-8674-51844650ED55",
+    "FA10FE7F-AB33-41E5-90F7-6CDC996C2B2C",
+    "AAAD44FB-1793-49C5-9C6D-B0581D62476E",
+    "79817634-0377-4F9D-B4F9-C82C2B47EECB",
+    "EB421ACF-391D-48F7-94E6-BA8512D08511"
+  ],
+
+  "monogame": {
+    "category": "Templates",
+    "longDescription": "A clean, empty multi-platform MonoGame solution. Includes a single shared Source folder with a minimal Game1 class compiled into every platform project, an empty Content Builder project ready for your assets, and projects for DesktopGL, DesktopVK (Vulkan), WindowsDX (DirectX 11), WindowsDX12, Android and iOS. Package versions are managed centrally with a single MonoGame version property.",
+    "images": [ "Screenshots/screenshot.png", "Screenshots/screenshot2.png" ],
+    "videos": [],
+    "links": [
+      { "label": "MonoGame Documentation", "url": "https://docs.monogame.net/" }
+    ],
+    "tags": [ "empty", "blank", "multi-platform", "content-builder" ],
+    "monoGameVersion": "3.8.5",
+    "templateVersion": "1.0.0",
+    "platforms": {
+      "gl":      { "target": "DesktopGL",   "folder": ".", "project": "EmptyGame.DesktopGL.csproj" },
+      "vk":      { "target": "DesktopVK",   "folder": ".", "project": "EmptyGame.DesktopVK.csproj" },
+      "dx":      { "target": "WindowsDX",   "folder": ".", "project": "EmptyGame.WindowsDX.csproj" },
+      "dx12":    { "target": "WindowsDX12", "folder": ".", "project": "EmptyGame.WindowsDX12.csproj" },
+      "android": { "target": "Android",     "folder": ".", "project": "EmptyGame.Android.csproj" },
+      "ios":     { "target": "iOS",         "folder": ".", "project": "EmptyGame.iOS.csproj" }
+    }
+  },
+
+  "symbols": {
+
+    "GameTitle": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "",
+      "description": "The display name for your game that players will see. This is also used as the assembly name. Defaults to the project name."
+    },
+    "GameTitleValue": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "GameTitle",
+        "fallbackVariableName": "name"
+      },
+      "replaces": "Empty-Game"
+    },
+    "GameTitleXml": {
+      "type": "derived",
+      "valueSource": "GameTitleValue",
+      "valueTransform": "xmlEncode",
+      "replaces": "Empty-Game-Name"
+    },
+
+    "SafeName": {
+      "type": "generated",
+      "generator": "regex",
+      "dataType": "string",
+      "parameters": {
+        "source": "name",
+        "steps": [
+          { "regex": "[^A-Za-z0-9_]", "replacement": "_" },
+          { "regex": "^([0-9])", "replacement": "_$1" },
+          { "regex": "^(Game1|Program|abstract|as|base|bool|break|byte|case|catch|char|checked|class|const|continue|decimal|default|delegate|do|double|else|enum|event|explicit|extern|false|finally|fixed|float|for|foreach|goto|if|implicit|in|int|interface|internal|is|lock|long|namespace|new|null|object|operator|out|override|params|private|protected|public|readonly|ref|return|sbyte|sealed|short|sizeof|stackalloc|static|string|struct|switch|this|throw|true|try|typeof|uint|ulong|unchecked|unsafe|ushort|using|virtual|void|volatile|while)$", "replacement": "${1}_" }
+        ]
+      },
+      "fileRename": "EmptyGame",
+      "replaces": "EmptyGame",
+      "description": "Project name reduced to a valid C# identifier that cannot collide with the template's own types."
+    },
+
+    "AppIdName": {
+      "type": "generated",
+      "generator": "regex",
+      "dataType": "string",
+      "parameters": {
+        "source": "name",
+        "steps": [
+          { "regex": "[^A-Za-z0-9]", "replacement": "" },
+          { "regex": "^$", "replacement": "Game" },
+          { "regex": "^([0-9])", "replacement": "App$1" },
+          { "regex": "(?i)^(abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|do|double|else|enum|extends|false|final|finally|float|for|goto|if|implements|import|instanceof|int|interface|long|native|new|null|package|private|protected|public|return|short|static|strictfp|super|switch|synchronized|this|throw|throws|transient|true|try|void|volatile|while)$", "replacement": "App$1" },
+          { "regex": "^", "replacement": "com.companyname." }
+        ]
+      },
+      "description": "The project name reduced to letters and digits and prefixed with com.companyname. for the store identity. (No store illegal characters allowed in identity)"
+    },
+    "AppId": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source": "AppIdName",
+        "toLower": true
+      },
+      "replaces": "com.companyname.EmptyGame",
+      "description": "Lower-case store identity written to Resources/Identity.props, so \"My Game\" gives com.companyname.mygame and \"3D Game\" gives com.companyname.app3dgame."
+    },
+
+    "Platforms": {
+      "type": "parameter",
+      "datatype": "choice",
+      "allowMultipleValues": true,
+      "choices": [
+        { "choice": "gl",      "description": "Cross-platform OpenGL desktop" },
+        { "choice": "vk",      "description": "Cross-platform Vulkan desktop" },
+        { "choice": "dx",      "description": "Windows DirectX 11 desktop" },
+        { "choice": "dx12",    "description": "Windows DirectX 12 desktop" },
+        { "choice": "android", "description": "Android mobile" },
+        { "choice": "ios",     "description": "iOS mobile" }
+      ],
+      "defaultValue": "gl",
+      "description": "Target platforms."
+    },
+
+    "IncludeDesktopGL":    { "type": "computed", "value": "Platforms == gl" },
+    "IncludeDesktopVK":    { "type": "computed", "value": "Platforms == vk" },
+    "IncludeWindowsDX":    { "type": "computed", "value": "Platforms == dx" },
+    "IncludeWindowsDX12":  { "type": "computed", "value": "Platforms == dx12" },
+    "IncludeAndroid":      { "type": "computed", "value": "Platforms == android" },
+    "IncludeiOS":          { "type": "computed", "value": "Platforms == ios" },
+    "IncludeAnyDesktop":   { "type": "computed", "value": "(IncludeDesktopGL || IncludeDesktopVK || IncludeWindowsDX || IncludeWindowsDX12)" },
+    "IncludeAnyGLVK":      { "type": "computed", "value": "(IncludeDesktopGL || IncludeDesktopVK)" },
+    "IncludeAnyWindowsDX": { "type": "computed", "value": "(IncludeWindowsDX || IncludeWindowsDX12)" },
+    "IncludeProgramCs":    { "type": "computed", "value": "(IncludeAnyDesktop || IncludeiOS)" },
+
+    "AnyPlatformBeforeDesktopVK":   { "type": "computed", "value": "(IncludeDesktopVK && IncludeDesktopGL)" },
+    "AnyPlatformBeforeWindowsDX":   { "type": "computed", "value": "(IncludeWindowsDX && (IncludeDesktopGL || IncludeDesktopVK))" },
+    "AnyPlatformBeforeWindowsDX12": { "type": "computed", "value": "(IncludeWindowsDX12 && (IncludeDesktopGL || IncludeDesktopVK || IncludeWindowsDX))" },
+    "AnyPlatformBeforeAndroid":     { "type": "computed", "value": "(IncludeAndroid && (IncludeDesktopGL || IncludeDesktopVK || IncludeWindowsDX || IncludeWindowsDX12))" },
+    "AnyPlatformBeforeiOS":         { "type": "computed", "value": "(IncludeiOS && (IncludeDesktopGL || IncludeDesktopVK || IncludeWindowsDX || IncludeWindowsDX12 || IncludeAndroid))" }
+  },
+
+  "SpecialCustomOperations": {
+    "**/*.cs": {
+      "operations": [
+        {
+          "type": "conditional",
+          "configuration": {
+            "if": [ "//#if" ],
+            "elseif": [ "//#elseif" ],
+            "else": [ "//#else" ],
+            "endif": [ "//#endif" ],
+            "trim": "true",
+            "wholeLine": "true"
+          }
+        }
+      ]
+    },
+    "**/*.md": {
+      "operations": [
+        {
+          "type": "conditional",
+          "configuration": {
+            "if": [ "<!--#if" ],
+            "elseif": [ "<!--#elseif" ],
+            "else": [ "<!--#else" ],
+            "endif": [ "<!--#endif" ],
+            "trim": "true",
+            "wholeLine": "true"
+          }
+        }
+      ]
+    },
+    "**/*.slnLaunch": {
+      "operations": [
+        {
+          "type": "conditional",
+          "configuration": {
+            "if": [ "//#if" ],
+            "elseif": [ "//#elseif" ],
+            "else": [ "//#else" ],
+            "endif": [ "//#endif" ],
+            "trim": "true",
+            "wholeLine": "true"
+          }
+        }
+      ]
+    },
+    "**/*.json": {
+      "operations": [
+        {
+          "type": "conditional",
+          "configuration": {
+            "if": [ "//#if" ],
+            "elseif": [ "//#elseif" ],
+            "else": [ "//#else" ],
+            "endif": [ "//#endif" ],
+            "trim": "true",
+            "wholeLine": "true"
+          }
+        }
+      ]
+    }
+  },
+
+  "sources": [
+    {
+      "exclude": [
+        ".mghub-sha",
+        ".template.config/**",
+        ".git/**",
+        ".vs/**",
+        ".scratch/**",
+        "**/bin/**",
+        "**/obj/**",
+        "**/*.tmp",
+        "Tools/**",
+        "Screenshots/**",
+        "icon.png",
+        "LICENSE",
+        ".gitignore",
+        ".editorconfig"
+      ],
+      "modifiers": [
+        { "condition": "(!IncludeDesktopGL)",   "exclude": [ "EmptyGame.DesktopGL.csproj" ] },
+        { "condition": "(!IncludeDesktopVK)",   "exclude": [ "EmptyGame.DesktopVK.csproj" ] },
+        { "condition": "(!IncludeWindowsDX)",   "exclude": [ "EmptyGame.WindowsDX.csproj" ] },
+        { "condition": "(!IncludeWindowsDX12)", "exclude": [ "EmptyGame.WindowsDX12.csproj" ] },
+        { "condition": "(!IncludeAndroid)",     "exclude": [ "EmptyGame.Android.csproj", "Source/MainActivity.cs", "Resources/Android/**" ] },
+        { "condition": "(!IncludeiOS)",         "exclude": [ "EmptyGame.iOS.csproj", "Resources/iOS/**" ] },
+        { "condition": "(!IncludeAnyDesktop)",  "exclude": [ "Resources/Icon.ico", "Resources/Icon.bmp" ] },
+        { "condition": "(!IncludeAnyGLVK)",     "exclude": [ "Resources/Windows/app.manifest", "Resources/macOS/**" ] },
+        { "condition": "(!IncludeAnyWindowsDX)", "exclude": [ "Resources/Windows/app.WindowsDX.manifest" ] },
+        { "condition": "(!IncludeProgramCs)",   "exclude": [ "Source/Program.cs" ] }
+      ]
+    }
+  ]
+}
