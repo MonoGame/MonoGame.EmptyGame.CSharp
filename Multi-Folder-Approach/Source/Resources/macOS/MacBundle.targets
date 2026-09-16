@@ -1,0 +1,29 @@
+<Project>
+
+  <!--
+    Fills in the $(...) tokens in Info.plist next to this file from Identity.props, and writes the result to the build and publish output.
+  -->
+
+  <PropertyGroup>
+    <MacBundleManifestTemplate>$(MSBuildThisFileDirectory)Info.plist</MacBundleManifestTemplate>
+  </PropertyGroup>
+
+  <Target Name="ExpandMacBundleManifest">
+    <PropertyGroup>
+      <_MacBundleManifest>$([System.IO.File]::ReadAllText('$(MacBundleManifestTemplate)'))</_MacBundleManifest>
+      <_MacBundleManifest>$(_MacBundleManifest.Replace('%24(AssemblyName)', '$(AssemblyName)'))</_MacBundleManifest>
+      <_MacBundleManifest>$(_MacBundleManifest.Replace('%24(ApplicationId)', '$(ApplicationId)'))</_MacBundleManifest>
+      <_MacBundleManifest>$(_MacBundleManifest.Replace('%24(ApplicationVersion)', '$(ApplicationVersion)'))</_MacBundleManifest>
+      <_MacBundleManifest>$(_MacBundleManifest.Replace('%24(ApplicationDisplayVersion)', '$(ApplicationDisplayVersion)'))</_MacBundleManifest>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="WriteMacBundleManifest" AfterTargets="Build" DependsOnTargets="ExpandMacBundleManifest">
+    <WriteLinesToFile File="$(OutDir)Info.plist" Lines="$(_MacBundleManifest)" Overwrite="true" WriteOnlyWhenDifferent="true" />
+  </Target>
+
+  <Target Name="PublishMacBundleManifest" AfterTargets="Publish" DependsOnTargets="ExpandMacBundleManifest">
+    <WriteLinesToFile File="$(PublishDir)Info.plist" Lines="$(_MacBundleManifest)" Overwrite="true" WriteOnlyWhenDifferent="true" />
+  </Target>
+
+</Project>

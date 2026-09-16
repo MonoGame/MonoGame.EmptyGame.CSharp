@@ -1,0 +1,110 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+//#if (IncludeDesktopGL)
+        {
+            "label": "Build: DesktopGL",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/EmptyGame.DesktopGL.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "/tl:off"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+//#endif
+//#if (AnyPlatformBeforeDesktopVK)
+        ,
+//#endif
+//#if (IncludeDesktopVK)
+        {
+            "label": "Build: DesktopVK",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/EmptyGame.DesktopVK.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "/tl:off"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+//#endif
+//#if (AnyPlatformBeforeWindowsDX)
+        ,
+//#endif
+//#if (IncludeWindowsDX)
+        {
+            "label": "Build: WindowsDX",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/EmptyGame.WindowsDX.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "/tl:off"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+//#endif
+//#if (AnyPlatformBeforeWindowsDX12)
+        ,
+//#endif
+//#if (IncludeWindowsDX12)
+        {
+            "label": "Build: WindowsDX12",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/EmptyGame.WindowsDX12.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "/tl:off"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+//#endif
+//#if (AnyPlatformBeforeAndroid)
+        ,
+//#endif
+//#if (IncludeAndroid)
+        {
+            "label": "Build: Android",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/EmptyGame.Android.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "/tl:off"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+//#endif
+//#if (AnyPlatformBeforeiOS)
+        ,
+//#endif
+//#if (IncludeiOS)
+        {
+            "label": "Build: iOS",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/EmptyGame.iOS.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "/tl:off"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+//#endif
+    ]
+}

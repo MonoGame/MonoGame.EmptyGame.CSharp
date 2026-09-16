@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-ios</TargetFramework>
+    <SupportedOSPlatformVersion>12.2</SupportedOSPlatformVersion>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MonoGamePlatform>iOS</MonoGamePlatform>
+  </PropertyGroup>
+  <PropertyGroup>
+    <CodesignEntitlements>Resources\iOS\Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Source\**\*.cs" />
+  </ItemGroup>
+  <!-- The Link names put each file where the iOS SDK expects it inside the bundle. -->
+  <ItemGroup>
+    <None Include="Resources\iOS\Info.plist" Link="Info.plist" />
+    <None Include="Resources\iOS\Entitlements.plist" />
+    <None Include="Resources\Identity.props" />
+    <InterfaceDefinition Include="Resources\iOS\LaunchScreen.storyboard" Link="LaunchScreen.storyboard" />
+    <ImageAsset Include="Resources\iOS\AppIcon.xcassets\**\*.*" Link="AppIcon.xcassets\%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Include="Content\Assets\**\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.iOS" />
+  </ItemGroup>
+  <Import Project="Content\BuildContent.targets" />
+</Project>

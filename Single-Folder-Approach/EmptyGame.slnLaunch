@@ -1,0 +1,107 @@
+[
+//#if (IncludeDesktopGL)
+  {
+    "Name": "DesktopGL",
+    "Projects": [
+      {
+        "Path": "EmptyGame.DesktopGL.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Content\\Content.csproj",
+        "Action": "None"
+      }
+    ]
+  }
+//#endif
+//#if (AnyPlatformBeforeDesktopVK)
+  ,
+//#endif
+//#if (IncludeDesktopVK)
+  {
+    "Name": "DesktopVK",
+    "Projects": [
+      {
+        "Path": "EmptyGame.DesktopVK.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Content\\Content.csproj",
+        "Action": "None"
+      }
+    ]
+  }
+//#endif
+//#if (AnyPlatformBeforeWindowsDX)
+  ,
+//#endif
+//#if (IncludeWindowsDX)
+  {
+    "Name": "WindowsDX",
+    "Projects": [
+      {
+        "Path": "EmptyGame.WindowsDX.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Content\\Content.csproj",
+        "Action": "None"
+      }
+    ]
+  }
+//#endif
+//#if (AnyPlatformBeforeWindowsDX12)
+  ,
+//#endif
+//#if (IncludeWindowsDX12)
+  {
+    "Name": "WindowsDX12",
+    "Projects": [
+      {
+        "Path": "EmptyGame.WindowsDX12.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Content\\Content.csproj",
+        "Action": "None"
+      }
+    ]
+  }
+//#endif
+//#if (AnyPlatformBeforeAndroid)
+  ,
+//#endif
+//#if (IncludeAndroid)
+  {
+    "Name": "Android",
+    "Projects": [
+      {
+        "Path": "EmptyGame.Android.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Content\\Content.csproj",
+        "Action": "None"
+      }
+    ]
+  }
+//#endif
+//#if (AnyPlatformBeforeiOS)
+  ,
+//#endif
+//#if (IncludeiOS)
+  {
+    "Name": "iOS",
+    "Projects": [
+      {
+        "Path": "EmptyGame.iOS.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Content\\Content.csproj",
+        "Action": "None"
+      }
+    ]
+  }
+//#endif
+]

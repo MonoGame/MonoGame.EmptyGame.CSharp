@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- App name, identity and version come from ..\Source\Resources\Identity.props. -->
+  <Import Project="..\Source\Resources\Identity.props" />
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+    <MonoGamePlatform>Android</MonoGamePlatform>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\Source\**\*.cs" />
+  </ItemGroup>
+  <!-- Icons, splash art and the resource values that reference them are shared from
+       ..\Source\Resources and linked back into the Android "Resources" tree. -->
+  <ItemGroup>
+    <AndroidResource Include="..\Source\Resources\Android\**\*">
+      <Link>Resources\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Include="..\Content\Assets\**\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.Android" />
+  </ItemGroup>
+  <Import Project="..\Content\BuildContent.targets" />
+</Project>
