@@ -15,8 +15,8 @@ It contains no game code beyond a minimal `Game1` class and no content - a blank
 | `DesktopVK/` | Cross-platform Vulkan desktop (Windows, Linux, macOS). |
 | `WindowsDX/` | Windows DirectX 11 desktop. |
 | `WindowsDX12/` | Windows DirectX 12 desktop. |
-| `Android/` | Android mobile (`net9.0-android`). |
-| `iOS/` | iOS mobile (`net9.0-ios`, requires a Mac to build/deploy). |
+| `Android/` | Android mobile (`net10.0-android`). |
+| `iOS/` | iOS mobile (`net10.0-ios`, requires a Mac to build/deploy). |
 
 Each platform folder contains only its entry point and platform-specific configuration; all game logic lives once in `Source/`.
 

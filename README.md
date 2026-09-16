@@ -22,12 +22,12 @@ Ultimately the choice comes down to two distinct layout options for a project st
 
 ## Base concepts of redesign
 
-To address the core reusability of a single template, the following core approaches have been used, leveraging off the capabilities nested within the DotNet framework, namely:
+To address the core reusability of a single template, the following core approaches have been used, leveraging off the capabilities nested within the .Net framework, namely:
 
 - Shared identity for all platforms through a [shared `identity.props`](https://learn.microsoft.com/en-gb/visualstudio/msbuild/customize-your-build) (optional)
 - DeDuped assets - all platforms share a "Resources" folder with unique assets.  With sub folders for dedicated platforms (see below)
 - Safe Name protection built in, included in the `template.json` - Now bad names result in a helpful error, not a bad project.
-- Guid Generation - Ensuring all titles and platforms when generated from the template receive new unique Guid's.
+- Guid Generation - Ensuring all titles and platforms when generated from the template receive new unique Guids.
 - Unified NuGet package definitions (`directory.packages.props`) - all versions for dependencies and MonoGame in one file, not scattered across projects, including a single MonoGame version.  Platforms just state what name of package to use.
 - Platforms can be added/removed far easier without direct impact to the solution or builds.
 
@@ -37,31 +37,31 @@ These patterns have been applied to the two example layouts below.
 
 ![Solution View](./images/solution-layout.png)
 
-The critical thing that is unified for both approaches below is the Solution layout, this remains the same regardless of which path is chosen.  Here, All the projects in the Game solution are listed along side the Content project.
+The critical thing that is unified for both approaches below is the Solution layout, this remains the same regardless of which path is chosen.  Here, All the projects in the Game solution are listed alongside the Content project.
 
 The only real difference between the templates is the folder structure behind them.
 
 > [!NOTE]
-> Although a debate has ranged on whether the Game name should be listed in each projects name or not, "EmptyGame.Desktop" or simply "Desktop", which is easier, you weigh in.
+> Although a debate arose on whether the Game name should be listed in each project's name or not, "EmptyGame.Desktop" or simply "Desktop", which is easier, you weigh in.
 
 ## Base Folders
 
 Beyond the platforms, three core folders are recommended as the "Best Practice" for managing your project, namely:
 
 - Source - This is where your game code lives
-- Content - This is where your game assets lives
+- Content - This is where your game assets live
 - Resources - This is where your projects identity and marketing are maintained.
 
 The aim here is to have purpose to areas of your solution, broken apart from whatever platforms you intend to support for your project.  Again, this is just an optional start, you can obviously manage your project however you wish after creation.
 
 > [!NOTE]
-> There is also some template only content in the repository, which is not copied when you generate a title from it, such as "Screenshots", these are template-only content.  You can ignore these as you game will not have them.
+> There is also some template only content in the repository, which is not copied when you generate a title from it, such as "Screenshots", these are template-only content.  You can ignore these as your game will not have them.
 
 ![Resources](./images/resources-layout.png)
 
 ## The folder layouts
 
-Where the foundation critically needs feedback is which of the following patterns developers feel most comfortable with?  Each approach has its pros and cons (nothing is free) and trade-off's for complexity.
+Where the foundation critically needs feedback is which of the following patterns developers feel most comfortable with?  Each approach has its pros and cons (nothing is free) and trade-offs for complexity.
 
 The ultimate aim however is the same, you just build your game your way.
 
@@ -93,9 +93,12 @@ The basic template is more of an extension of the current template:
 - Source/Resources - Project Source
 - Platform Projects - 1 folder per platform
 - Solution in root
-- bin/obj - output to each folders dedicated folder
+- bin/obj - output to each folders dedicated folder (Although, the projects could use a shared root bin/obj as well, the same as the Single Folder approach)
 
 Here each platform listens to its own platform folder, so dedicated platform code is included only within each platform folder, whereas the central "shared" source is included from the root shared folder.  This relies more on existing .Net approaches.  However, this also means references, builds and deployments are now spread across the project moving everything into each platform's own folder rather than being centralised.
+
+> [!NOTE]
+> The main complication with the Multi-Folder approach, is that you essentially have a single folder with a single file unless you add something platform specific.  Which with MonoGame, is unlikely.
 
 ## Feedback welcome
 
@@ -105,4 +108,4 @@ Here is the part where we are asking for feedback and questions, which approach:
 - Are there any improvements that could be made?
 - Is there anything unclear or confusing?
 
-Let us know!
+Let us know in the Discussions tab!

@@ -27,7 +27,7 @@ Everything that identifies your game lives in [`Resources/Identity.props`](Resou
 | `ApplicationVersion` | Build number, incremented every store submission. |
 | `ApplicationDisplayVersion` | Public version string. |
 
-`ApplicationId` starts as `com.companyname.` plus your project name in lower case with only letters and digits, because iOS bundle identifiers forbid underscores and Android package names forbid hyphens. A name that starts with a digit or is a Java reserved word gains an `app` prefix, because the Android package name is a Java package name. Replace `companyname` with your own before publishing.
+`ApplicationId` starts as `com.companyname.` plus your project name in lowercase with only letters and digits, because iOS bundle identifiers forbid underscores and Android package names forbid hyphens. A name that starts with a digit or is a Java reserved word gains an `app` prefix, because the Android package name is a Java package name. Replace `companyname` with your own before publishing.
 
 Every platform project imports this file. The one exception is the Android launcher name, which comes from `Resources/Android/Values/strings.xml` so it can be localised.
 
