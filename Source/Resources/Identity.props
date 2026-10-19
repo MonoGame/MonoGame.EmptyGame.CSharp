@@ -1,0 +1,33 @@
+<Project>
+
+  <!--
+    Your game's identity. This is the only build file you need to edit.
+
+    Every platform project imports this, so a value set here applies everywhere.
+    No platform project file needs to change when you edit this file.
+
+    The Android app name shown under the launcher icon comes from Resources/Android/Values/strings.xml instead, because Android reads it from a string resource so it can be localised.
+  -->
+
+  <PropertyGroup>
+
+    <!-- The name of the built executable and assembly. -->
+    <AssemblyName>Empty-Game-Name</AssemblyName>
+    <AssemblyTitle>Empty-Game-Name</AssemblyTitle>
+
+    <!-- The display name players see. Used for the iOS home screen label. -->
+    <ApplicationTitle>Empty-Game-Name</ApplicationTitle>
+
+    <!-- Your unique app identity. Change this before publishing to any store.
+         Becomes the Android package name and the iOS bundle identifier. -->
+    <ApplicationId>com.companyname.EmptyGame</ApplicationId>
+
+    <!-- Build number, incremented every store submission. Android versionCode, iOS CFBundleVersion. -->
+    <ApplicationVersion>1</ApplicationVersion>
+
+    <!-- Public version string players see. Android versionName, iOS CFBundleShortVersionString. -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+
+  </PropertyGroup>
+
+</Project>
