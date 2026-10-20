@@ -24,13 +24,16 @@
   "monogame": {
     "category": "Templates",
     "longDescription": "A clean, empty multi-platform MonoGame solution. Includes a single shared Source folder with a minimal Game1 class compiled into every platform, an empty Content Builder project ready for your assets, and projects for DesktopGL, DesktopVK (Vulkan), WindowsDX (DirectX 11), WindowsDX12, Android and iOS. Package versions are managed centrally with a single MonoGame version property.",
-    "images": [ "Screenshots/screenshot.png", "Screenshots/screenshot2.png" ],
+    "images": [ 
+      "https://raw.githubusercontent.com/MonoGame/MonoGame.EmptyGame.CSharp/refs/heads/main/Screenshots/screenshot.png", 
+      "https://raw.githubusercontent.com/MonoGame/MonoGame.EmptyGame.CSharp/refs/heads/main/Screenshots/screenshot2.png" 
+    ],
     "videos": [],
     "links": [
       { "label": "MonoGame Documentation", "url": "https://docs.monogame.net/" }
     ],
     "tags": [ "empty", "blank", "multi-platform", "content-builder" ],
-    "monoGameVersion": "3.8.5",
+    "monoGameVersion": "3.8.6",
     "templateVersion": "1.0.0",
     "platforms": {
       "gl":      { "target": "DesktopGL",   "folder": "Platforms/DesktopGL" },
