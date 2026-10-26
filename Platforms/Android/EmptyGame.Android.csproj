@@ -21,7 +21,7 @@
     <UpToDateCheckInput Include="..\..\Content\Assets\**\*" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.Android" />
+    <PackageReference Include="MonoGame.Framework.Android" Version="$(MonoGameVersion)" />
   </ItemGroup>
   <Import Project="..\..\Content\BuildContent.targets" />
 </Project>

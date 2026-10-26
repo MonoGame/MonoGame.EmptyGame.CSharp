@@ -27,8 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.Native" />
-    <PackageReference Include="MonoGame.Runtime.Windows.DX12" />
+    <PackageReference Include="MonoGame.Framework.Native" Version="$(MonoGameVersion)" />
+    <PackageReference Include="MonoGame.Runtime.Windows.DX12" Version="$(MonoGameVersion)" />
   </ItemGroup>
 
   <ItemGroup>
