@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <!-- App name, identity and version come from ..\..\Source\Resources\Identity.props. -->
-  <Import Project="..\..\Source\Resources\Identity.props" />
+  <!-- App name, identity and version come from ..\..\Resources\Identity.props. -->
+  <Import Project="..\..\Resources\Identity.props" />
   <PropertyGroup>
     <TargetFramework>net10.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
@@ -15,7 +15,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <ApplicationIcon>..\..\Source\Resources\Icon.ico</ApplicationIcon>
+    <ApplicationIcon>..\..\Resources\Icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,10 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\..\Source\Resources\Icon.ico">
+    <EmbeddedResource Include="..\..\Resources\Icon.ico">
       <LogicalName>Icon.ico</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Source\Resources\Icon.bmp">
+    <EmbeddedResource Include="..\..\Resources\Icon.bmp">
       <LogicalName>Icon.bmp</LogicalName>
     </EmbeddedResource>
   </ItemGroup>

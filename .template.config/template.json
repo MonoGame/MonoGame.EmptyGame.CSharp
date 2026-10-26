@@ -110,7 +110,7 @@
         "toLower": true
       },
       "replaces": "com.companyname.EmptyGame",
-      "description": "Lower-case store identity written to Source/Resources/Identity.props, so \"My Game\" gives com.companyname.mygame and \"3D Game\" gives com.companyname.app3dgame."
+      "description": "Lower-case store identity written to Resources/Identity.props, so \"My Game\" gives com.companyname.mygame and \"3D Game\" gives com.companyname.app3dgame."
     },
 
     "Platforms": {
@@ -215,10 +215,10 @@
         { "condition": "(!IncludeDesktopVK)",   "exclude": [ "Platforms/DesktopVK/**" ] },
         { "condition": "(!IncludeWindowsDX)",   "exclude": [ "Platforms/WindowsDX/**" ] },
         { "condition": "(!IncludeWindowsDX12)", "exclude": [ "Platforms/WindowsDX12/**" ] },
-        { "condition": "(!IncludeAndroid)",     "exclude": [ "Platforms/Android/**", "Source/Resources/Android/**" ] },
-        { "condition": "(!IncludeiOS)",         "exclude": [ "Platforms/iOS/**", "Source/Resources/iOS/**", "Source/Resources/Icon.png" ] },
-        { "condition": "(!IncludeAnyDesktop)",  "exclude": [ "Source/Resources/Icon.ico", "Source/Resources/Icon.bmp" ] },
-        { "condition": "(!IncludeMacBundle)",   "exclude": [ "Source/Resources/macOS/**" ] }
+        { "condition": "(!IncludeAndroid)",     "exclude": [ "Platforms/Android/**", "Resources/Android/**" ] },
+        { "condition": "(!IncludeiOS)",         "exclude": [ "Platforms/iOS/**", "Resources/iOS/**", "Resources/Icon.png" ] },
+        { "condition": "(!IncludeAnyDesktop)",  "exclude": [ "Resources/Icon.ico", "Resources/Icon.bmp" ] },
+        { "condition": "(!IncludeMacBundle)",   "exclude": [ "Resources/macOS/**" ] }
       ]
     }
   ]

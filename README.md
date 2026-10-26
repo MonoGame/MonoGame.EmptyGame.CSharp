@@ -9,7 +9,7 @@ It contains no game code beyond a minimal `Game1` class and no content - a blank
 | Folder | Purpose |
 | --- | --- |
 | `Source/` | Shared game code, compiled into every platform project. Start in `Game1.cs`. |
-| `Source/Resources/` | Your game's identity, icons and platform art, referenced by every platform. One copy of each asset, no duplicates per platform. |
+| `Resources/` | Your game's identity, icons and platform art, referenced by every platform. One copy of each asset, no duplicates per platform. |
 | `Content/` | The Content Builder project. Put your raw assets under `Content/Assets/` and register them in `Content/Builder/Builder.cs`. Content is built automatically as part of each platform build. |
 | `Platforms/DesktopGL/` | Cross-platform OpenGL desktop (Windows, Linux, macOS). |
 | `Platforms/DesktopVK/` | Cross-platform Vulkan desktop (Windows, Linux, macOS). |
@@ -22,7 +22,7 @@ Each folder under `Platforms/` contains only its entry point and platform-specif
 
 ## Naming your game
 
-Everything that identifies your game lives in one file, [`Source/Resources/Identity.props`](Source/Resources/Identity.props). Every platform project imports it, so a value set there applies everywhere and no platform project file needs editing.
+Everything that identifies your game lives in one file, [`Resources/Identity.props`](Resources/Identity.props). Every platform project imports it, so a value set there applies everywhere and no platform project file needs editing.
 
 > [!TIP]
 > You can override any of these by editing the `csproj`, manifest or `Info.plist` directly, if you prefer.
@@ -36,7 +36,7 @@ Everything that identifies your game lives in one file, [`Source/Resources/Ident
 | `ApplicationDisplayVersion` | Public version string. Android `versionName`, iOS `CFBundleShortVersionString`. |
 
 > [!NOTE]
-> The Android name shown under the launcher icon is the one exception: it comes from `Source/Resources/Android/Values/strings.xml`, because Android reads it from a string resource so it can be localised.
+> The Android name shown under the launcher icon is the one exception: it comes from `Resources/Android/Values/strings.xml`, because Android reads it from a string resource so it can be localised.
 
 ## Getting started
 
@@ -79,7 +79,7 @@ Or open the solution in Visual Studio, VS Code or Rider and pick a platform laun
 
 ## Replacing the placeholder art
 
-All project artwork is located under `Source/Resources/`, linked into the projects that need them. Replace the files in place and keep the names, and every platform that uses one picks up the change.
+All project artwork is located under `Resources/`, linked into the projects that need them. Replace the files in place and keep the names, and every platform that uses one picks up the change.
 
 | Path | Used by |
 | --- | --- |
@@ -136,7 +136,7 @@ dotnet new monogame -n MyGame --Platforms gl vk dx dx12 -o ../MyGame
 
 ### Project names
 
-The name passed with `-n` becomes the namespace, the project file names and the assembly name, so the template reduces it to a valid C# identifier that cannot collide with the template's own types. Spaces, hyphens, dots and other punctuation become underscores, a leading digit gains one in front, and a C# keyword, `Game1` or `Program` gains one at the end. So `-n "My Game"` produces `My_Game.DesktopGL.csproj` and `namespace My_Game`, and `-n class` produces `class_`. The display name players see is kept as typed, in `Source/Resources/Identity.props`, and XML-escaped where it lands in XML, so a game called `Rock & Roll` still produces a valid `Identity.props`. `ApplicationId` is derived separately, from letters and digits only and in lower case, and gains an `app` prefix if the result starts with a digit or is a Java reserved word, so `My Game` gives `com.companyname.mygame`, `3D Game` gives `com.companyname.app3dgame` and `class` gives `com.companyname.appclass`. Every project GUID is regenerated per project.
+The name passed with `-n` becomes the namespace, the project file names and the assembly name, so the template reduces it to a valid C# identifier that cannot collide with the template's own types. Spaces, hyphens, dots and other punctuation become underscores, a leading digit gains one in front, and a C# keyword, `Game1` or `Program` gains one at the end. So `-n "My Game"` produces `My_Game.DesktopGL.csproj` and `namespace My_Game`, and `-n class` produces `class_`. The display name players see is kept as typed, in `Resources/Identity.props`, and XML-escaped where it lands in XML, so a game called `Rock & Roll` still produces a valid `Identity.props`. `ApplicationId` is derived separately, from letters and digits only and in lower case, and gains an `app` prefix if the result starts with a digit or is a Java reserved word, so `My Game` gives `com.companyname.mygame`, `3D Game` gives `com.companyname.app3dgame` and `class` gives `com.companyname.appclass`. Every project GUID is regenerated per project.
 
 ### Building what you generated
 

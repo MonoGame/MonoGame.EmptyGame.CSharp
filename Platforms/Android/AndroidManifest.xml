@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- The package name, versionCode and versionName come from ..\..\Source\Resources\Identity.props
-     The app name comes from ..\..\Source\Resources\Android\Values\strings.xml -->
+<!-- The package name, versionCode and versionName come from ..\..\Resources\Identity.props
+     The app name comes from ..\..\Resources\Android\Values\strings.xml -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 	<uses-feature android:glEsVersion="0x00020000" android:required="true" />
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="35" />

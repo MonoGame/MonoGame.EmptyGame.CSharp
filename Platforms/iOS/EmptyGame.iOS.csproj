@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <!-- App name, identity and version come from ..\..\Source\Resources\Identity.props. -->
-  <Import Project="..\..\Source\Resources\Identity.props" />
+  <!-- App name, identity and version come from ..\..\Resources\Identity.props. -->
+  <Import Project="..\..\Resources\Identity.props" />
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net10.0-ios</TargetFramework>
@@ -12,13 +12,13 @@
     <Compile Include="..\..\Source\**\*.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Source\Resources\iOS\Info.plist">
+    <None Include="..\..\Resources\iOS\Info.plist">
       <Link>Info.plist</Link>
     </None>
-    <ImageAsset Include="..\..\Source\Resources\iOS\AppIcon.xcassets\**\*">
+    <ImageAsset Include="..\..\Resources\iOS\AppIcon.xcassets\**\*">
       <Link>AppIcon.xcassets\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </ImageAsset>
-    <ImageAsset Include="..\..\Source\Resources\Icon.png">
+    <ImageAsset Include="..\..\Resources\Icon.png">
       <Link>AppIcon.xcassets\AppIcon.appiconset\icon_1024x1024.png</Link>
     </ImageAsset>
   </ItemGroup>
